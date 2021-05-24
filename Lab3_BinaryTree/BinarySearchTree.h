@@ -13,16 +13,16 @@ using namespace std;
 * 
 * TODO:
 * 1. Basic operations: insert, search, delete            | + |   
-* 2. Load balancing                                      |   |
+* 2. Load balancing                                      | + |
 * 3. map, reduce, where                                  | + |
 * 4. Treading                                            | + |
 *   4.1. by fixed traversal                              | + |
 *   4.2. by specified by the method parameter traversal  | + |
-* 5. Saving to a string                                  |   |
-*   5.1. by fixed traversal                              |   |
-*   5.2. by pecified by the formatting string            |   |
-* 6. Extracting the subtree (by the specified root)      |   |
-* 7. Search for the occurrence of a subtree              |   |
+* 5. Saving to a string                                  | + |
+*   5.1. by fixed traversal                              | + |
+*   5.2. by pecified by the formatting string            | + |
+* 6. Extracting the subtree (by the specified root)      | + |
+* 7. Search for the occurrence of a subtree              | + |
 * 
 */
 
@@ -318,14 +318,14 @@ namespace MAIN {
             else return getParent(root, key);
         }
 
-        void cpy(Node* currentNode) {
-            if (!currentNode) return;
+        void cpy(const Node* fromNode, Node* toNode) {
+            if (!toNode) return;
             Node* node = new Node();
             node->key = root->key;
             node->left = root->left;
             node->right = root->right;
-            cpy(root->left);
-            cpy(root->right);
+            cpy(fromNode, node->left);
+            cpy(fromNode, node->right);
         }
 
         Node* search(Node* _root, T key) {
@@ -346,9 +346,7 @@ namespace MAIN {
 
         // construtor for count elements
         template <typename ...Args>
-        BinTree(const T& key, Args...more) {
-            this->insert(key, more...);
-        }
+        BinTree(const T& key, Args...more) { this->insert(key, more...); }
 
         ~BinTree() { delete root; }
         void clear() { delete root; root = nullptr; }
@@ -472,8 +470,8 @@ namespace MAIN {
 
         bool isBalanced(Node* root)
         {
-            int lh; /* for height of left subtree */
-            int rh; /* for height of right subtree */
+            int lh; 
+            int rh; 
 
             /* If tree is empty then return true */
             if (root == NULL)
@@ -493,7 +491,17 @@ namespace MAIN {
 
         bool isBalanced() { return this->isBalanced(root); }
 
-
+        void Balance() {
+            if (this->IsBalanced() == 1) { cout << "Tree is already balanced" << endl; return; }
+            this->toThread();
+            int n = 0;
+            for (Node* tmp = this->root; tmp != nullptr; tmp = tmp->right)
+                n++;
+            int m = (1 << int(log2(n + 1))) - 1;
+            this->multiRotate(n - m);
+            while (m > 1)
+                this->multiRotate(m /= 2);
+        }
 
         ///////////////////////////////////////////////////////////////////////
         // Map, reduce, where (scores: 3)
@@ -513,7 +521,7 @@ namespace MAIN {
             BinTree<T> bst;
             if (!root) return bst;
 
-            cpy(bst);
+            cpy(root, bst);
             __map(bst, mapper);
 
             return bst;
@@ -535,7 +543,7 @@ namespace MAIN {
         BinTree<T> Where(bool(*cond_func)(T)) {
             BinTree<T> bst;
             if (!root) return bst;
-            cpy(bst);
+            cpy(root, bst);
             __where(bst.root, cond_func);
             return bst;
         }
@@ -673,6 +681,82 @@ namespace MAIN {
             }
 
         }
+        void toThread() {
+            BinTree<T>* newTree = new BinTree<T>();
+            vector<Node>* list = this->Thread("LNR");
+            auto list_front = list->begin();
+            newTree->insert(list_front->key);
+            for (int i = 1; i < list->size(); i++) {
+                next(list_front);
+                newTree->insert(list_front->key);
+            }
+            this->root = newTree->root;
+            delete list;
+        }
+
+        ///////////////////////////////////////////////////////////////////////
+        // Get subTree by key (scores: 2)
+        ///////////////////////////////////////////////////////////////////////
+
+        BinTree<T> GetSubTree(T key) {
+            BinTree<T> bst;
+            if (!root) {
+                return bst;
+            }
+            cpy(search(root, key), bst.root);
+            return bst;
+        }
+
+        ///////////////////////////////////////////////////////////////////////
+        // Saving to a string  (scores: 1 + 3)
+        ///////////////////////////////////////////////////////////////////////
+
+        string treeToString(string sequence_string) {
+            string res;
+            if (!root) {
+                std::cout << "Tree is empty" << std::endl;
+                return res;
+            }
+            vector<Node>* th_array = this->Thread(sequence_string);
+            auto list_front = th_array->begin();
+            for (int i = 0; i < th_array->size(); i++) {
+                res += "[" + to_string(i) + ", " + to_string(list_front->key) + "]";
+                if (i < th_array->size() - 1) {
+                    res += ", ";
+                }
+                next(list_front);
+            }
+            return res;
+        }
+
+        ///////////////////////////////////////////////////////////////////////
+        // Search for the occurrence of a subtree (scores: 3)
+        ///////////////////////////////////////////////////////////////////////
+
+        bool SearchSubTree(BinTree<T> subTree) { return searchForFirstOccurrences(root, subTree); }
+
+        bool isEqual(Node* node_A, Node* node_B) {
+            if (node_A == NULL && node_B == NULL)
+                return true;
+
+            if (node_A != NULL && node_B != NULL) {
+                if (node_A->key == node_B->key && isEqual(node_A->left, node_B->left) && isEqual(node_A->right, node_B->right)) {
+                    return true;
+                }
+
+            }
+            return false;
+        }
+
+        bool searchForFirstOccurrences(Node* node, Node* sub_node) {
+            if (sub_node == NULL) return true;
+            if (node == NULL) return false;
+            if (isEqual(branch, sub_branch)) return true;
+
+            return searchForFirstOccurrences(node->left, sub_node) ||
+                searchForFirstOccurrences(node->right, sub_node);
+        }
+
 
         ///////////////////////////////////////////////////////////////////////
         // Other Functions for more confortable use
