@@ -1,15 +1,2 @@
 ﻿  Lab3_BinaryTree.cpp
-D:\labs\Lab3_BinaryTree\Lab3_BinaryTree\BinarySearchTreeUpgrade.h(333,45): warning C4834: отмена возвращаемого значения функции с атрибутом "nodiscard"
-D:\labs\Lab3_BinaryTree\Lab3_BinaryTree\BinarySearchTreeUpgrade.h(330): message : во время компиляции функции-члена класс шаблон "T MAIN::BinTree<T>::Find(int)"
-          with
-          [
-              T=int
-          ]
-D:\labs\Lab3_BinaryTree\Lab3_BinaryTree\Lab3_BinaryTree.cpp(28): message : выполняется компиляция ссылки на экземпляр шаблон функции "T MAIN::BinTree<T>::Find(int)"
-          with
-          [
-              T=int
-          ]
-D:\labs\Lab3_BinaryTree\Lab3_BinaryTree\Lab3_BinaryTree.cpp(11): message : выполняется компиляция ссылки на экземпляр класс шаблон функции "MAIN::BinTree<int>"
-D:\labs\Lab3_BinaryTree\Lab3_BinaryTree\BinarySearchTreeUpgrade.h(334): warning C4715: MAIN::BinTree<int>::Find: значение возвращается не при всех путях выполнения
   Lab3_BinaryTree.vcxproj -> D:\labs\Lab3_BinaryTree\Debug\Lab3_BinaryTree.exe
