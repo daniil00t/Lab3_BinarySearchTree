@@ -57,6 +57,10 @@ namespace MAIN {
             cell_display(std::string valstr) : valstr(valstr), present(true) {}
         };
 
+        /*
+        * Additional methods for printing the entire tree-calculates all 
+        * the distances between nodes and displays everything in the desired order
+        */
         using display_rows = vector<vector<cell_display>>;
         display_rows get_row_display() const {
             // start off by traversing the tree to
@@ -245,7 +249,14 @@ namespace MAIN {
 
         int get_max_depth() const { return root ? root->max_depth() : 0; }
 
-        // Additional private functions for main methods
+        /*
+        * Additional private functions for main methods:
+        * Tree rotation is an operation on a binary tree that changes 
+        * the structure without interfering with the order of the elements.
+        */
+        // 
+
+        // Right tree: (A, P, (B, Q, C))
         void singleRightRotate(Node* parent)
         {
             Node* left_child = parent->left;
@@ -257,6 +268,7 @@ namespace MAIN {
             left_child->right = parent;
         }
 
+        // Left tree: ((A, P, B), Q, C)
         void singleLeftRotate(Node* parent)
         {
             Node* right_child = parent->right;
@@ -268,6 +280,7 @@ namespace MAIN {
             right_child->left = parent;
         }
 
+        // implemetation rotate the node several times in a row
         void multiRotate(int count) {
             Node* parent = this->root;
             Node* child = this->root->right;
@@ -284,26 +297,6 @@ namespace MAIN {
                 else
                     break;
             }
-        }
-
-        Node* findMin(Node* t)
-        {
-            if (t == NULL)
-                return NULL;
-            else if (t->left == NULL)
-                return t;
-            else
-                return findMin(t->left);
-        }
-
-        Node* findMax(Node* t)
-        {
-            if (t == NULL)
-                return NULL;
-            else if (t->right == NULL)
-                return t;
-            else
-                return findMax(t->right);
         }
 
         Node* getParent(Node*& node, T key) {
@@ -341,7 +334,7 @@ namespace MAIN {
         Node* root;
 
     public:
-        // emtpty cosntructor
+        // empty cosntructor
         BinTree() : root(nullptr) {}
 
         // construtor for count elements
@@ -751,7 +744,7 @@ namespace MAIN {
         bool searchForFirstOccurrences(Node* node, Node* sub_node) {
             if (sub_node == NULL) return true;
             if (node == NULL) return false;
-            if (isEqual(branch, sub_branch)) return true;
+            if (isEqual(node, sub_node)) return true;
 
             return searchForFirstOccurrences(node->left, sub_node) ||
                 searchForFirstOccurrences(node->right, sub_node);
@@ -763,7 +756,7 @@ namespace MAIN {
         ///////////////////////////////////////////////////////////////////////
 
 
-        // Print a representation of the tree to cout
+        // Print the tree to cout
         void Print() const {
             const int d = get_max_depth();
 

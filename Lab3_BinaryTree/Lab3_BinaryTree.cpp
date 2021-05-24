@@ -8,7 +8,7 @@ using namespace MAIN;
 * 
 * Global TODO:
 * 
-* 1. Main class - BinTree                                       |   |
+* 1. Main class - BinTree                                       | + |
 * 2. Tests                                                      |   |
 * 3. Class for view optimisation                                |   |
 * 4. WINAPI - Charts and implementation optimise view class     |   |
