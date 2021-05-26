@@ -33,7 +33,54 @@ using namespace std;
 */
 
 
+template<typename _Tp>
+inline constexpr bool
+operator<(const complex<_Tp>& __x, const complex<_Tp>& __y) {
+    if (pow(__x.real(), 2) + pow(__x.imag(), 2) < pow(__y.real(), 2) + pow(__y.imag(), 2)) {
+        return true;
+    }
+    else {
+        return false;
+    }
+}
+
+template<typename _Tp>
+inline constexpr bool
+operator>(const complex<_Tp>& __x, const complex<_Tp>& __y) {
+    if (pow(__x.real(), 2) + pow(__x.imag(), 2) > pow(__y.real(), 2) + pow(__y.imag(), 2)) {
+        return true;
+    }
+    else {
+        return false;
+    }
+}
+
+inline bool
+operator>(string a, string b) {
+    return a.size() > b.size();
+}
+inline bool
+operator<(string a, string b) {
+    return a.size() < b.size();
+}
+
+
+inline string
+to_string(complex<double> __val)
+{
+    string str;
+    str = str + to_string(__val.real()) + " " + to_string(__val.imag());
+    return str;
+}
+
+inline string
+to_string(string __val)
+{
+    return __val;
+}
+
 namespace MAIN {
+
 	template <class T>
 	class BST {
 	private:
@@ -269,11 +316,37 @@ namespace MAIN {
         void CPY(Node*& _branch) {
             copy(_branch, root);
         }
-        void CPY_TREE(const BST<T>& bst) {
-            bst.clear();
-            copy(bst.root, root);
-        }
 
+        Node* findparent(Node*& node, T key) {
+            if (node == NULL) {
+                return NULL; // empty
+            }
+
+            if (key == GetKey(node->left) || key == GetKey(node->right)) {
+                return node;
+            }
+            else if (key < node->key) {
+                findparent(node->left, key);
+
+            }
+            else {
+                findparent(node->right, key);
+            }
+        }
+        T GetKey(Node* node) {
+            if (node) {
+                return node->key;
+            }
+            else {
+                return 0;
+            }
+        }
+        Node* ShowParent(T key) {
+            if (key == root->key) {
+                return NULL;
+            }
+            else return findparent(root, key);
+        }
 
         // MAIN ADD FUNCTIONS
         void add(Node*& node, const T key) {
@@ -430,52 +503,22 @@ namespace MAIN {
             left_child->right = parent;
         }
 
-        Node* findparent(Node*& node, T key) {
-            if (node == NULL) {
-                return NULL; // empty
-            }
-
-            if (key == GetKey(node->left) || key == GetKey(node->right)) {
-                return node;
-            }
-            else if (key < node->key) {
-                findparent(node->left, key);
-
-            }
-            else {
-                findparent(node->right, key);
-            }
-        }
-        T GetKey(Node* node) {
-            if (node) {
-                return node->key;
-            }
-            else {
-                return 0;
-            }
-        }
-        Node* ShowParent(T key) {
-            if (key == root->key) {
-                return NULL;
-            }
-            else return findparent(root, key);
-        }
 
         // MAP - REDUCE - WHERE
         void Inorder(BST<T>* tree, vector<T> array, int left, int right) {
             if (left > right) return;
             int j = (left + right) / 2;
-            tree->Add(array[j]);
+            tree->Insert(array[j]);
             Inorder(tree, array, left, j - 1);
             Inorder(tree, array, j + 1, right);
         }
         void Preorder(BST<T>* tree, vector<T> array) {
             for (int i = 0; i < array.size(); i++)
-                tree->Add(array[i]);
+                tree->Insert(array[i]);
         }
         void Postorder(BST<T>* tree, vector<T> array) {
             for (int i = array.size() - 1; i >= 0; i--)
-                tree->Add(array[i]);
+                tree->Insert(array[i]);
         }
 
         template <typename T>
@@ -542,7 +585,7 @@ namespace MAIN {
         // Main Functions (scores: 5)
         ///////////////////////////////////////////////////////////////////////
 
-        void Add(const T key) {
+        void Insert(const T key) {
             add(root, key);
         }
         void Remove(T key) {
@@ -573,7 +616,7 @@ namespace MAIN {
         bool IsBalanced() {
             return is_balanced(root);
         }
-        void newBalancing() {
+        void Balancing() {
             if (this->IsBalanced() == 1) { return; }
             this->CreateList();
             int n = 0;
