@@ -13,6 +13,8 @@
 #include <vector>
 #include <fstream>
 
+#include "Additional.h"
+
 using namespace std;
 
 /*
@@ -33,54 +35,8 @@ using namespace std;
 */
 
 
-template<typename _Tp>
-inline constexpr bool
-operator<(const complex<_Tp>& __x, const complex<_Tp>& __y) {
-    if (pow(__x.real(), 2) + pow(__x.imag(), 2) < pow(__y.real(), 2) + pow(__y.imag(), 2)) {
-        return true;
-    }
-    else {
-        return false;
-    }
-}
-
-template<typename _Tp>
-inline constexpr bool
-operator>(const complex<_Tp>& __x, const complex<_Tp>& __y) {
-    if (pow(__x.real(), 2) + pow(__x.imag(), 2) > pow(__y.real(), 2) + pow(__y.imag(), 2)) {
-        return true;
-    }
-    else {
-        return false;
-    }
-}
-
-inline bool
-operator>(string a, string b) {
-    return a.size() > b.size();
-}
-inline bool
-operator<(string a, string b) {
-    return a.size() < b.size();
-}
-
-
-inline string
-to_string(complex<double> __val)
-{
-    string str;
-    str = str + to_string(__val.real()) + " " + to_string(__val.imag());
-    return str;
-}
-
-inline string
-to_string(string __val)
-{
-    return __val;
-}
 
 namespace MAIN {
-
 	template <class T>
 	class BST {
 	private:
@@ -347,6 +303,7 @@ namespace MAIN {
             }
             else return findparent(root, key);
         }
+        
 
         // MAIN ADD FUNCTIONS
         void add(Node*& node, const T key) {
@@ -784,7 +741,12 @@ namespace MAIN {
         ///////////////////////////////////////////////////////////////////////
         // Other Functions for more confortable use
         ///////////////////////////////////////////////////////////////////////
-
+        Node* give_root() {
+            return root;
+        }
+        Node* find_branch(T key) {
+            return find(root, key);
+        }
         // Print the tree to cout
         void Print() const {
             const int d = get_max_depth();

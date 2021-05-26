@@ -139,10 +139,13 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Additional.cpp" />
+    <ClCompile Include="BST.cpp" />
     <ClCompile Include="Interface.cpp" />
     <ClCompile Include="Lab3_BinaryTree.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Additional.h" />
     <ClInclude Include="BST.h" />
     <ClInclude Include="Complex.h" />
     <ClInclude Include="Interface.h" />
