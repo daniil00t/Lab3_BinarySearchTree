@@ -51,7 +51,7 @@ namespace MAIN {
             Node(const T& key) : key(key), left(nullptr), right(nullptr) {}
 
             // destructor
-            //~Node() { delete left; delete right; }
+            ~Node() { delete left; delete right; }
             int max_depth() const {
                 const int left_depth = left ? left->max_depth() : 0;
                 const int right_depth = right ? right->max_depth() : 0;
@@ -476,13 +476,6 @@ namespace MAIN {
         void Postorder(BST<T>* tree, vector<T> array) {
             for (int i = array.size() - 1; i >= 0; i--)
                 tree->Insert(array[i]);
-        }
-
-        template <typename T>
-        bool compare(T a, T b)
-        {
-            if (a < b) return true;
-            else return false;
         }
 
         // FIND SUBTREE

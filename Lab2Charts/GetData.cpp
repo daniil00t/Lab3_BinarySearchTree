@@ -1,6 +1,14 @@
 #include "GetData.h"
+#include <stdlib.h>
+#include <stdio.h>
+#include <math.h>
+#include "interpolation.h"
+//#include "../libs/ALGLIB/src/interpolation.cpp"
+
+
 
 double average(double a, double b, double c) {
+    
     return max(min(a, b), min(b, c));
 }
 
@@ -31,6 +39,7 @@ vector<pair<int, float>> getTimePoints__Add(int count) {
         auto end = std::chrono::steady_clock::now();
         auto elapsed_ms = std::chrono::duration_cast<std::chrono::nanoseconds>(end - begin);
         DATA.push_back({ i + 1, std::chrono::duration<double>(elapsed_ms).count() });
+        tree->clear();
     }
     processing_results(&DATA);
     return DATA;
@@ -48,6 +57,7 @@ vector<pair<int, float>> getTimePoints__Find(int count) {
         auto end = std::chrono::steady_clock::now();
         auto elapsed_ms = std::chrono::duration_cast<std::chrono::nanoseconds>(end - begin);
         DATA.push_back({ i + 1, std::chrono::duration<double>(elapsed_ms).count() });
+        tree->clear();
     }
     processing_results(&DATA);
     return DATA;
@@ -64,6 +74,7 @@ vector<pair<int, float>> getTimePoints__Remove(int count) {
         auto end = std::chrono::steady_clock::now();
         auto elapsed_ms = std::chrono::duration_cast<std::chrono::nanoseconds>(end - begin);
         DATA.push_back({ i + 1, std::chrono::duration<double>(elapsed_ms).count() });
+        tree->clear();
     }
     processing_results(&DATA);
     return DATA;
@@ -79,6 +90,7 @@ vector<pair<int, float>> getTimePoints__Balancing(int count) {
         auto end = std::chrono::steady_clock::now();
         auto elapsed_ms = std::chrono::duration_cast<std::chrono::nanoseconds>(end - begin);
         DATA.push_back({ i + 1, std::chrono::duration<double>(elapsed_ms).count() });
+        tree->clear();
     }
     processing_results(&DATA);
     return DATA;

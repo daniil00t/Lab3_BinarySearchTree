@@ -13,9 +13,10 @@ using namespace std;
 * 
 * 1. Main class - BinTree                                       | + |
 * 2. Console Interface                                          | + |
-* 3. Tests                                                      | - |
-* 4. Class for view optimisation                                | - |
-* 5. WINAPI - Charts and implementation optimise view class     | - |
+* 3. Tests                                                      | + |
+* 4. Class for view optimisation                                | + |
+* 5. Approximation for vector of points function                | - |
+* 6. WINAPI - Charts and implementation optimise view class     | - |
 * 
 */
 

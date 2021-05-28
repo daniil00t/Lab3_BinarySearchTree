@@ -1,22 +1,2 @@
-﻿  BST.cpp
-  Interface.cpp
-D:\labs\Lab3_BinaryTree\Lab3_BinaryTree\BST.h(731,2): warning C4018: <: несоответствие типов со знаком и без знака
-D:\labs\Lab3_BinaryTree\Lab3_BinaryTree\BST.h(723): message : во время компиляции функции-члена класс шаблон "std::string MAIN::BST<std::complex<double>>::toString(std::string)"
-D:\labs\Lab3_BinaryTree\Lab3_BinaryTree\Interface.cpp(107): message : выполняется компиляция ссылки на экземпляр шаблон функции "std::string MAIN::BST<std::complex<double>>::toString(std::string)"
-D:\labs\Lab3_BinaryTree\Lab3_BinaryTree\Interface.cpp(149): message : выполняется компиляция ссылки на экземпляр класс шаблон функции "MAIN::BST<std::complex<double>>"
-D:\labs\Lab3_BinaryTree\Lab3_BinaryTree\BST.h(733,23): warning C4018: <: несоответствие типов со знаком и без знака
-  Lab3_BinaryTree.cpp
-  Создание кода...
-D:\labs\Lab3_BinaryTree\Lab3_BinaryTree\BST.h(377): warning C4715: MAIN::BST<double>::find: значение возвращается не при всех путях выполнения
-D:\labs\Lab3_BinaryTree\Lab3_BinaryTree\BST.h(602): warning C4715: MAIN::BST<double>::map: значение возвращается не при всех путях выполнения
-D:\labs\Lab3_BinaryTree\Lab3_BinaryTree\BST.h(377): warning C4715: MAIN::BST<int>::find: значение возвращается не при всех путях выполнения
-D:\labs\Lab3_BinaryTree\Lab3_BinaryTree\BST.h(602): warning C4715: MAIN::BST<int>::map: значение возвращается не при всех путях выполнения
-D:\labs\Lab3_BinaryTree\Lab3_BinaryTree\BST.h(377): warning C4715: MAIN::BST<std::basic_string<char,std::char_traits<char>,std::allocator<char> > >::find: значение возвращается не при всех путях выполнения
-D:\labs\Lab3_BinaryTree\Lab3_BinaryTree\BST.h(602): warning C4715: MAIN::BST<std::basic_string<char,std::char_traits<char>,std::allocator<char> > >::map: значение возвращается не при всех путях выполнения
-D:\labs\Lab3_BinaryTree\Lab3_BinaryTree\BST.h(377): warning C4715: MAIN::BST<std::complex<double> >::find: значение возвращается не при всех путях выполнения
-D:\labs\Lab3_BinaryTree\Lab3_BinaryTree\BST.h(602): warning C4715: MAIN::BST<std::complex<double> >::map: значение возвращается не при всех путях выполнения
-D:\labs\Lab3_BinaryTree\Lab3_BinaryTree\BST.h(291): warning C4715: MAIN::BST<double>::findparent: значение возвращается не при всех путях выполнения
-D:\labs\Lab3_BinaryTree\Lab3_BinaryTree\BST.h(291): warning C4715: MAIN::BST<int>::findparent: значение возвращается не при всех путях выполнения
-D:\labs\Lab3_BinaryTree\Lab3_BinaryTree\BST.h(291): warning C4715: MAIN::BST<std::basic_string<char,std::char_traits<char>,std::allocator<char> > >::findparent: значение возвращается не при всех путях выполнения
-D:\labs\Lab3_BinaryTree\Lab3_BinaryTree\BST.h(291): warning C4715: MAIN::BST<std::complex<double> >::findparent: значение возвращается не при всех путях выполнения
+﻿  Lab3_BinaryTree.cpp
   Lab3_BinaryTree.vcxproj -> D:\labs\Lab3_BinaryTree\Debug\Lab3_BinaryTree.exe

@@ -42,6 +42,8 @@ namespace Lab2Charts {
 	private: System::Windows::Forms::Button^ button_clear;
 	private: System::Windows::Forms::Label^ label1;
 	private: System::Windows::Forms::ComboBox^ select_method;
+	private: System::Windows::Forms::Label^ label2;
+	private: System::Windows::Forms::Label^ label_done_count;
 
 
 	private:
@@ -57,32 +59,34 @@ namespace Lab2Charts {
 		/// </summary>
 		void InitializeComponent(void)
 		{
-			System::Windows::Forms::DataVisualization::Charting::ChartArea^ chartArea2 = (gcnew System::Windows::Forms::DataVisualization::Charting::ChartArea());
-			System::Windows::Forms::DataVisualization::Charting::Legend^ legend2 = (gcnew System::Windows::Forms::DataVisualization::Charting::Legend());
-			System::Windows::Forms::DataVisualization::Charting::Series^ series2 = (gcnew System::Windows::Forms::DataVisualization::Charting::Series());
+			System::Windows::Forms::DataVisualization::Charting::ChartArea^ chartArea1 = (gcnew System::Windows::Forms::DataVisualization::Charting::ChartArea());
+			System::Windows::Forms::DataVisualization::Charting::Legend^ legend1 = (gcnew System::Windows::Forms::DataVisualization::Charting::Legend());
+			System::Windows::Forms::DataVisualization::Charting::Series^ series1 = (gcnew System::Windows::Forms::DataVisualization::Charting::Series());
 			this->chart_main = (gcnew System::Windows::Forms::DataVisualization::Charting::Chart());
 			this->button_init_chart = (gcnew System::Windows::Forms::Button());
 			this->input_count = (gcnew System::Windows::Forms::TextBox());
 			this->button_clear = (gcnew System::Windows::Forms::Button());
 			this->label1 = (gcnew System::Windows::Forms::Label());
 			this->select_method = (gcnew System::Windows::Forms::ComboBox());
+			this->label2 = (gcnew System::Windows::Forms::Label());
+			this->label_done_count = (gcnew System::Windows::Forms::Label());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->chart_main))->BeginInit();
 			this->SuspendLayout();
 			// 
 			// chart_main
 			// 
-			chartArea2->Name = L"ChartArea1";
-			this->chart_main->ChartAreas->Add(chartArea2);
-			legend2->Name = L"Legend1";
-			this->chart_main->Legends->Add(legend2);
+			chartArea1->Name = L"ChartArea1";
+			this->chart_main->ChartAreas->Add(chartArea1);
+			legend1->Name = L"Legend1";
+			this->chart_main->Legends->Add(legend1);
 			this->chart_main->Location = System::Drawing::Point(51, 35);
 			this->chart_main->Name = L"chart_main";
 			this->chart_main->Palette = System::Windows::Forms::DataVisualization::Charting::ChartColorPalette::Bright;
-			series2->ChartArea = L"ChartArea1";
-			series2->ChartType = System::Windows::Forms::DataVisualization::Charting::SeriesChartType::Line;
-			series2->Legend = L"Legend1";
-			series2->Name = L"Data";
-			this->chart_main->Series->Add(series2);
+			series1->ChartArea = L"ChartArea1";
+			series1->ChartType = System::Windows::Forms::DataVisualization::Charting::SeriesChartType::Line;
+			series1->Legend = L"Legend1";
+			series1->Name = L"Data";
+			this->chart_main->Series->Add(series1);
 			this->chart_main->Size = System::Drawing::Size(978, 300);
 			this->chart_main->TabIndex = 0;
 			this->chart_main->Text = L"MainChart";
@@ -136,11 +140,32 @@ namespace Lab2Charts {
 			this->select_method->TabIndex = 5;
 			this->select_method->Text = L"Method Test";
 			// 
+			// label2
+			// 
+			this->label2->AutoSize = true;
+			this->label2->Location = System::Drawing::Point(51, 417);
+			this->label2->Name = L"label2";
+			this->label2->Size = System::Drawing::Size(39, 13);
+			this->label2->TabIndex = 6;
+			this->label2->Text = L"Done: ";
+			this->label2->Click += gcnew System::EventHandler(this, &Charts::label2_Click);
+			// 
+			// label_done_count
+			// 
+			this->label_done_count->AutoSize = true;
+			this->label_done_count->Location = System::Drawing::Point(96, 417);
+			this->label_done_count->Name = L"label_done_count";
+			this->label_done_count->Size = System::Drawing::Size(13, 13);
+			this->label_done_count->TabIndex = 7;
+			this->label_done_count->Text = L"0";
+			// 
 			// Charts
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->ClientSize = System::Drawing::Size(1104, 552);
+			this->Controls->Add(this->label_done_count);
+			this->Controls->Add(this->label2);
 			this->Controls->Add(this->select_method);
 			this->Controls->Add(this->label1);
 			this->Controls->Add(this->button_clear);
@@ -170,6 +195,7 @@ namespace Lab2Charts {
 			return getTimePoints__Balancing(count);
 		}
 		else {
+			exit;
 			return vector<pair<int, float>>();
 		}
 	}
@@ -187,10 +213,11 @@ namespace Lab2Charts {
 
 			for (auto j = i * HR; j < (i + 1) * HR; j++) {
 				this->chart_main->Series["Data"]->Points->AddXY((*DATA)[j].first, (*DATA)[j].second);
+				this->label_done_count->Text = "" + (*DATA)[j].first + " elements";
 			}
+			this->label_done_count->Update();
 			this->chart_main->Update();
 
-			//delete DATA;
 		}
 		delete DATA;
 		
@@ -198,5 +225,7 @@ namespace Lab2Charts {
 	private: System::Void button_clear_Click(System::Object^ sender, System::EventArgs^ e) {
 		this->chart_main->Series["Data"]->Points->Clear();
 	}
-	};
+	private: System::Void label2_Click(System::Object^ sender, System::EventArgs^ e) {
+	}
+};
 }
