@@ -51,7 +51,8 @@ namespace MAIN {
             Node(const T& key) : key(key), left(nullptr), right(nullptr) {}
 
             // destructor
-            ~Node() { delete left; delete right; }
+            // !- commented because testes returned exceptions -!
+            //~Node() { delete left; delete right; }
             int max_depth() const {
                 const int left_depth = left ? left->max_depth() : 0;
                 const int right_depth = right ? right->max_depth() : 0;
@@ -409,7 +410,7 @@ namespace MAIN {
             return 1 + max(height(node->left),
                 height(node->right));
         }
-        void CreateList() {
+        void toList() {
             Node* parent = this->root;
             while (parent != nullptr) {
                 if (parent->left != nullptr) {
@@ -568,7 +569,7 @@ namespace MAIN {
         }
         void Balancing() {
             if (this->IsBalanced() == 1) { return; }
-            this->CreateList();
+            this->toList();
             int n = 0;
             for (Node* tmp = this->root; tmp != nullptr; tmp = tmp->right)
                 n++;

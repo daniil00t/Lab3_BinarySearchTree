@@ -1,11 +1,11 @@
 ﻿  Lab3Test.cpp
-D:\labs\Lab3_BinaryTree\Lab3_BinaryTree\BST.h(731,2): warning C4018: <: несоответствие типов со знаком и без знака
-D:\labs\Lab3_BinaryTree\Lab3_BinaryTree\BST.h(723): message : во время компиляции функции-члена класс шаблон "std::string MAIN::BST<int>::toString(std::string)"
+D:\labs\Lab3_BinaryTree\Lab3_BinaryTree\BST.h(725,2): warning C4018: <: несоответствие типов со знаком и без знака
+D:\labs\Lab3_BinaryTree\Lab3_BinaryTree\BST.h(717): message : во время компиляции функции-члена класс шаблон "std::string MAIN::BST<int>::toString(std::string)"
 D:\labs\Lab3_BinaryTree\Lab3Test\Lab3Test.cpp(116): message : выполняется компиляция ссылки на экземпляр шаблон функции "std::string MAIN::BST<int>::toString(std::string)"
 D:\labs\Lab3_BinaryTree\Lab3Test\Lab3Test.cpp(32): message : выполняется компиляция ссылки на экземпляр класс шаблон функции "MAIN::BST<int>"
-D:\labs\Lab3_BinaryTree\Lab3_BinaryTree\BST.h(733,23): warning C4018: <: несоответствие типов со знаком и без знака
-D:\labs\Lab3_BinaryTree\Lab3_BinaryTree\BST.h(377): warning C4715: MAIN::BST<int>::find: значение возвращается не при всех путях выполнения
-D:\labs\Lab3_BinaryTree\Lab3_BinaryTree\BST.h(602): warning C4715: MAIN::BST<int>::map: значение возвращается не при всех путях выполнения
-D:\labs\Lab3_BinaryTree\Lab3_BinaryTree\BST.h(291): warning C4715: MAIN::BST<int>::findparent: значение возвращается не при всех путях выполнения
-     Создается библиотека D:\labs\Lab3_BinaryTree\Debug\Lab3Test.lib и объект D:\labs\Lab3_BinaryTree\Debug\Lab3Test.exp
+D:\labs\Lab3_BinaryTree\Lab3_BinaryTree\BST.h(727,23): warning C4018: <: несоответствие типов со знаком и без знака
+D:\labs\Lab3_BinaryTree\Lab3_BinaryTree\BST.h(378): warning C4715: MAIN::BST<int>::find: значение возвращается не при всех путях выполнения
+D:\labs\Lab3_BinaryTree\Lab3_BinaryTree\BST.h(596): warning C4715: MAIN::BST<int>::map: значение возвращается не при всех путях выполнения
+D:\labs\Lab3_BinaryTree\Lab3_BinaryTree\BST.h(292): warning C4715: MAIN::BST<int>::findparent: значение возвращается не при всех путях выполнения
+BST.obj : warning LNK4099: "vc142.pdb" PDB не найден с "BST.obj" или на "D:\labs\Lab3_BinaryTree\Debug\vc142.pdb"; компоновка объекта выполняется как при отсутствии отладочных данных
   Lab3Test.vcxproj -> D:\labs\Lab3_BinaryTree\Debug\Lab3Test.dll
